@@ -17,8 +17,13 @@
   "scripts": {
     "start": "node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/netdbiot/plugin-netdb-daemon.git"
+  }
   "dependencies": {
-    "http": "0.0.0",
-    "msfrpc-client-node": "^0.2.2"
+    "msfrpc-client-node": "^0.2.2",
+    "ngrok": "^2.2.6",
+    "restify": "^4.3.0"
   }
 }
