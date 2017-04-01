@@ -2,11 +2,23 @@
   "name": "NetdbD",
   "version": "0.0.1",
   "description": "NetdbD is a tool that enables your local services like metasploit, nmap and other tools with the netdb.io website",
-  "contributors": [{"name":"James Jara","email":"jamesjara@gmail.com"},
-                    {"name":"Bryan Hernandez","email":"bryan27hr@protonmail.ch"}],
+  "contributors": [
+    {
+      "name": "James Jara",
+      "email": "jamesjara@gmail.com"
+    },
+    {
+      "name": "Bryan Hernandez",
+      "email": "bryan27hr@protonmail.ch"
+    }
+  ],
   "license": "MIT",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
+  },
+  "dependencies": {
+    "http": "0.0.0",
+    "msfrpc-client-node": "^0.2.2"
   }
 }
