@@ -1,2 +1,2 @@
-# NetdbD
- NetDB.io daemon that lets you integrate vulnerability scanners like nmap, zmap, metasploit and others into the NetDB interface
+# NetDB.io Daemon
+ NetDB.io daemon is a plugin that lets you integrate vulnerability scanners like nmap, zmap, metasploit and other custom programs into the NetDB interface
