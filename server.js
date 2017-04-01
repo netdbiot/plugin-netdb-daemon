@@ -1,4 +1,4 @@
- "use strict"
+ "use strict";
  //Still working on it
 
 var Api = require("./lib/ApiServer");
