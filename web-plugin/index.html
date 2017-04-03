@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <style>
+        #map {
+            height: 100%;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script data-require="jquery@2.1.1" data-semver="1.9.1" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+</head>
+<body onload="initMap()">
+<div id="map"></div>
+<script>
+    window.addEventListener('message', function(event){
+        // if (~event.origin.indexOf('http://netdb.io'))
+        initPlugin(event.data);
+    });
+</script>
+</body>
+</html>
