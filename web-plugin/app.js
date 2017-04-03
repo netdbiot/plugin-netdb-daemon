@@ -7,6 +7,6 @@ function initPlugin(response) {
 	}
     
   $.getJSON(url, function (data) {
-		console.log(data);
+      document.writeln(data);
   });
 }
