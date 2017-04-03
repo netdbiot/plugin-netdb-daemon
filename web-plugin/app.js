@@ -1,7 +1,7 @@
-function initPlugin(response) {
+function init() {}
+=function initPlugin(response) {
 	var url = response['config']['url'];
 	var data = response['data'];
-	var bounds = new google.maps.LatLngBounds();
 	for (row of data) {
 		var ip = row.ip;
 	}
