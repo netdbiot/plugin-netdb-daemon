@@ -1,5 +1,5 @@
 function init() {}
-=function initPlugin(response) {
+function initPlugin(response) {
 	var url = response['config']['url'];
 	var data = response['data'];
 	for (row of data) {
