@@ -25,3 +25,7 @@ Scan.prototype.QuickScan = function(){
 
 
 };
+
+Scan.prototype.CustomScan = function(){
+
+};
