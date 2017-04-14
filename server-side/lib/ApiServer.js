@@ -4,13 +4,14 @@ var restify = require('restify');
 var ngrok = require('ngrok');
 var fs = require('fs');
 
-
+var activemodules;
 function ApiServer(options) {
     this.init(options || {});
 }
 
 ApiServer.prototype.init = function(options){
     this.port = options.port || 1243;
+    activemodules = options.modules;
 };
 
 ApiServer.prototype.start = function(){
@@ -45,12 +46,26 @@ ApiServer.prototype.start = function(){
 
 
 function handleGet(req, res, next) {
-    res.send('hello ' + req.params.method);
+    var method = req.params.method;
+    if(activemodules.indexOf(method) >= 0){
+        //handle for the active methods on modules.json
+
+        res.send("Method: " + method);
+    }else{
+        res.send("No method found for your call");
+    }
+        //req.params.method);
     next();
 }
 function handlePost(req, res, next) {
-    console.log(req.params.method);
-    res.send("wew,lad");
+    var method = req.params.method;
+    if(activemodules.indexOf(method) >= 0){
+        //handle for the active methods on modules.json
+
+        res.send("Method: " + method);
+    }else{
+        res.send("No method found for your call");
+    }
     next();
 }
 
