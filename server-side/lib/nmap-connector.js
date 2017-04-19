@@ -9,23 +9,49 @@ function Scan(options){
     this.init(options || {});
 }
 
+var scanList = {
+    "quickScan": "-T4 -F",
+    "quickScanPlus": "-sV -T4 -O -F",
+    "pingScan": "-pn",
+    "intenseScan": "-T4 -A -v",
+    "intenseScanTCP": "-p 1-65535 -T4 -A -v '",
+    "intenseScanUDP": "-sS -sU -T4 -A -v",
+    "intenseScanNoPing": "-T4 -A -v -Pn",
+    "SlowScan": "-sS -sU -T4 -A -v -PE -PP -PS80,443 -PA3389 -PU40125 -PY -g 53 --script \"default or (discovery and safe)\" "
+};
+
 Scan.prototype.init = function(options) {
     //Docs:  https://www.npmjs.com/package/node-nmap
     this.hosts  = options.hosts || '127.0.0.1';
-    this.type = options.type || "QuickScan"; //we are using zenmap examples
-    this.flags = options.flags || {}; //like -Pn, -Sn...
+    this.type = options.type || "quickScan"; //we are using zenmap examples listed above
+    this.flags = options.flags || ""; //like -Pn, -Sn...
+    this.status = "Pending";
+    this.result = {};
 
 };
 
-//Todo: we should make a scan for the same scan methods zenmap uses, QuickScan,
-//quickScanPlus ..... and then a general one where we allow the user to send
-//its own flags to the nmap command
+Scan.prototype.startScan = function(){
+    var useflags;
+    var hosts = this.hosts;
+    var f = this.flags;
+    (f != 0)? useflags = this.flags: useflags = scanList[this.type];
 
-Scan.prototype.QuickScan = function(){
-
+    var scanned = new Promise(function(resolve,reject){
+        var nmapscan = new nmap.nodenmap.NmapScan(hosts, useflags);
+        nmapscan.on('complete',function(data){
+            resolve(data);
+        });
+        nmapscan.on('error',function(data){
+            reject(data);
+        });
+    });
+    var self = this; //to actually talk about this object in the next step
+    scanned.then(function(result){
+        self.result = result;
+        self.status = "Finished";
+    });
 
 };
 
-Scan.prototype.CustomScan = function(){
 
-};
+module.exports = Scan;

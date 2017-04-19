@@ -3,6 +3,7 @@
 var restify = require('restify');
 var ngrok = require('ngrok');
 var fs = require('fs');
+var nmapscan = require('./nmap-connector');
 
 var activemodules;
 function ApiServer(options) {
