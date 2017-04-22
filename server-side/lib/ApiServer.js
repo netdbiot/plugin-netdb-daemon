@@ -3,7 +3,8 @@
 var restify = require('restify');
 var ngrok = require('ngrok');
 var fs = require('fs');
-var nmapscan = require('./nmap-connector');
+var shortid = require('shortid');
+
 
 var activemodules;
 function ApiServer(options) {
@@ -13,6 +14,7 @@ function ApiServer(options) {
 ApiServer.prototype.init = function(options){
     this.port = options.port || 1243;
     activemodules = options.modules;
+    this.operations = []; //list of ongoing operations
 };
 
 ApiServer.prototype.start = function(){
@@ -22,6 +24,8 @@ ApiServer.prototype.start = function(){
     server.use(restify.CORS());
     server.get('/:method', handleGet);
     server.post('/:method',handlePost);
+    server.get('/:method/:id', handleGet);
+    server.post('/:method/:id',handlePost);
     server.listen(this.port, function(err) {
         if (err)
             console.log(err);
@@ -48,6 +52,9 @@ ApiServer.prototype.start = function(){
 
 function handleGet(req, res, next) {
     var method = req.params.method;
+    if (method == ""){
+        res.send("Please use a method");
+    }
     if(activemodules.indexOf(method) >= 0){
         //handle for the active methods on modules.json
 
@@ -55,19 +62,22 @@ function handleGet(req, res, next) {
     }else{
         res.send("No method found for your call");
     }
-        //req.params.method);
     next();
 }
 function handlePost(req, res, next) {
     var method = req.params.method;
     if(activemodules.indexOf(method) >= 0){
         //handle for the active methods on modules.json
+        var body = JSON.parse(req.body);
+        res.send("Method: " + method );
 
-        res.send("Method: " + method);
     }else{
         res.send("No method found for your call");
     }
     next();
 }
+
+
+
 
 module.exports = ApiServer;

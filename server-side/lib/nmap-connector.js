@@ -28,13 +28,13 @@ Scan.prototype.init = function(options) {
     this.status = "Pending";
     this.result = {};
 
+
 };
 
 Scan.prototype.startScan = function(){
     var useflags;
     var hosts = this.hosts;
-    var f = this.flags;
-    (f != 0)? useflags = this.flags: useflags = scanList[this.type];
+    (this.flags != 0)? useflags = this.flags: useflags = scanList[this.type]; //if the user gave any flags,
 
     var scanned = new Promise(function(resolve,reject){
         var nmapscan = new nmap.nodenmap.NmapScan(hosts, useflags);
