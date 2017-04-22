@@ -14,7 +14,7 @@ function ApiServer(options) {
 ApiServer.prototype.init = function(options){
     this.port = options.port || 1243;
     activemodules = options.modules;
-    this.operations = []; //list of ongoing operations
+    this.operations = {}; //list of ongoing operations
 };
 
 ApiServer.prototype.start = function(){
@@ -70,6 +70,7 @@ function handlePost(req, res, next) {
         //handle for the active methods on modules.json
         var body = JSON.parse(req.body);
         res.send("Method: " + method );
+
 
     }else{
         res.send("No method found for your call");
