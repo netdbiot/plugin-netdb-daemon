@@ -22,10 +22,16 @@
     "url": "https://github.com/netdbiot/plugin-netdb-daemon.git"
   },
   "dependencies": {
+    "async": "^2.3.0",
+    "express": "^4.15.2",
+    "fs": "0.0.1-security",
+    "http": "0.0.0",
     "msfrpc-client-node": "^0.2.2",
     "ngrok": "^2.2.6",
     "node-nmap": "^3.0.3",
     "restify": "^4.3.0",
-    "shortid": "^2.2.8"
+    "shortid": "^2.2.8",
+    "url": "^0.11.0",
+    "ws": "^2.3.1"
   }
 }
