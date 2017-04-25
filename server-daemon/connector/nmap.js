@@ -16,7 +16,6 @@ Nmap.prototype.init = function(data) {
         
         const ip = data.ip;
         exec('nmap '+cmd.replace('#{ip}',ip), function(error, stdout, stderr) {
-            //console.log(error, stdout, stderr);
             if (error) {
                 ws.send("error scaning " + ip);
             } else if (stderr) {
