@@ -11,17 +11,28 @@
             height: 100%;
             margin: 0;
             padding: 0;
+            background-color: black;
+        }
+        pre {
+            background-color: black;
+            color: #31ff3a;
+            width: 100%;
+            height: 100%;
+            font-size: small;
+            margin: 5px;
         }
     </style>
-    <script data-require="jquery@2.1.1" data-semver="1.9.1" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+    <script type="text/javascript" src="jquery.simple.websocket.js"></script>
     <script type="text/javascript" src="app.js"></script>
 </head>
 <body onload="init()">
 <script>
     window.addEventListener('message', function(event){
-        // if (~event.origin.indexOf('http://netdb.io'))
-        initPlugin(event.data);
+        if (~event.origin.indexOf('http://netdb.io'))
+            initPlugin(event.data);
     });
 </script>
+<pre id="console"></pre>
 </body>
 </html>
