@@ -15,7 +15,7 @@ DoublePulsar.prototype.init = function(data) {
     async.each(data, (data, cb) => {
         
         const ip = data.ip;
-        exec('boudlplepulsar.py '+cmd.replace('#{ip}',ip), function(error, stdout, stderr) {
+        exec('doublepulsar-detection-script/detect_doublepulsar_smb.py '+cmd.replace('#{ip}',ip), function(error, stdout, stderr) {
             if (error) {
                 ws.send("error scaning " + ip);
             } else if (stderr) {

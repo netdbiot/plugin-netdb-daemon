@@ -1,0 +1,3 @@
+[submodule "server-daemon/connector/doublepulsar-detection-script"]
+	path = server-daemon/connector/doublepulsar-detection-script
+	url = https://github.com/countercept/doublepulsar-detection-script
