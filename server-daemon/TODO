@@ -1,0 +1,9 @@
+Right now working on apiserver/modules, the idea is that the daemon is listening 'forever', then when we receive
+a post request with a job to do (like doing an nmap scan, or metasploit, or whatever), a 'modules' object is created
+with the data we just received, that object has an too, then we put that in a hashmap where we can access the elements
+by their id. and so we just wait till they finish and then display values.
+
+TODO:
+    Finish the api handler we should be able to get on /:modules, maybe make a list with all the modules
+        /:modules/:id will show us the information of the object with such id, like /nmap/21dasd will give us the nmap
+        scan with such id.
