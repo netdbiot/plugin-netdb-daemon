@@ -5,9 +5,8 @@ const WebSocket = require('ws');
 const ngrok = require('ngrok');
 const fs = require('fs');
 const app = express();
-
 const port = 8080;
- 
+
 const server = http.createServer(app);
 const wss = new WebSocket.Server({
     server
@@ -17,20 +16,27 @@ const wss = new WebSocket.Server({
 const Nmap = require('./connector/nmap');
 const DoublePulsar = require('./connector/nsa-doublepulsar');
 const Ping = require('./connector/ping');
+const Any = require('./connector/any');
 
 // Start WS server
 wss.on('connection', function connection(ws){
     
-    ws.send('>  Hi, you are now to ngrok server.');
+    ws.send('>  Hi, you are now connected to netdb.io remote CLI service.');
     
     ws.on('message', function incoming(msg) {
     
         msg = JSON.parse(msg);
+        
+        console.log("new cmd" , msg);
+        
         const module = msg['module'];
         const data = msg['data'];
         const cmd = msg['cmd'];
         
         switch(module){
+            case "any":
+                new Any(ws, cmd).init(data);
+                break;
             case "nmap":
                 new Nmap(ws, cmd).init(data);
                 break;
