@@ -1,12 +1,17 @@
 function init() {}
 function initPlugin(response) {
-	var url = response['config']['url'];
-	var data = response['data'];
-	for (row of data) {
-		var ip = row.ip;
-	}
+    const data = response['data'];
+    const url = response['config']['url'];
+    const cmd = response['config']['cmd'];
+    const module = response['config']['module'];
     
-  $.getJSON(url, function (data) {
-      document.writeln(data);
-  });
+    const webSocket = $.simpleWebSocket({ url }).send({
+        data,
+        url,
+        cmd,
+        module
+    });
+    webSocket.listen(function(message) {
+        $( "pre" ).append(message+"<br>" );
+    });
 }
